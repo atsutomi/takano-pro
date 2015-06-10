@@ -24,10 +24,17 @@ class StocksController < ApplicationController
   end
   
   def show
+    @doc = Nokogiri::HTML(open('http://info.finance.yahoo.co.jp/ranking/?kd=1&tm=d&mk=1'))
+    #URL取得
+    @news = @doc.xpath('//tr[@class = "rankingTabledata yjM"]/td[@class = "txtcenter"]/a')
+    @urls = Array.new
+    @elms.each do |elm|
+      @urls.push(elm.attr('href'))
+    end
+    
+    
     
     #@news = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp/search/?q=4661'))
-    @a = 2
-    @b = 3
     
    
    #IO.popen("python /home/ne25-0010e/test.py "+@a.to_s+' '+@b.to_s).each do |line|
