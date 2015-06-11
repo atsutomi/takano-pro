@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150602071952) do
+ActiveRecord::Schema.define(:version => 20150610000925) do
+
+  create_table "news", :force => true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "stocks", :force => true do |t|
     t.integer  "stock_no"
