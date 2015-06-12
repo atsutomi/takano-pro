@@ -1,12 +1,38 @@
+# coding: utf-8
 class StocksController < ApplicationController
   def index
-    @doc = Nokogiri::HTML(open('http://info.finance.yahoo.co.jp/ranking/?kd=1&tm=d&mk=1'))
+    @stock = Stock.all
+    @ac = @stock[0].stock_no.to_s
+    @i = 0
+    @page = 0
+    while @i < 5 do
+      @page += 1
+      @stock_news = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp/search/?q='+@stock[0].stock_no.to_s + '&p='+@page.to_s))
+  
+      #URL取得
+      @a_tags = @stock_news.xpath('//div[@class = "marB15 clearFix"]/ul/li/a')
+      #title取得
+      @news = @stock_news.xpath('//div[@class = "marB15 clearFix"]')
     
+      @titles = Array.new
+      @urls = Array.new
     
-    
-    
-    
-    
+      #title & url　を抽出してそれぞれの配列に格納
+      @a_tags.each do |elm|
+          if !elm.attr('href').include?('/cp/')
+            if !elm.attr('href').include?('.vip')
+              if !elm.text.include?("ランキング")
+                @urls.push(elm.attr('href'))
+                @titles.push(elm.text)
+                @i += 1
+                if @i == 5
+                  break
+                end
+              end
+            end
+          end 
+      end
+    end
     #URL取得
     #@elms = @doc.xpath('//tr[@class = "rankingTabledata yjM"]/td[@class = "txtcenter"]/a')
     #@urls = Array.new
@@ -17,15 +43,7 @@ class StocksController < ApplicationController
   
   def show
     #@stocks_no = Nokogiri::HTML(open('http://info.finance.yahoo.co.jp/ranking/?kd=1&tm=d&mk=1'))
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
     #@doc = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp/category/stocks/'))
     #URL取得
     #@a_tags = @doc.xpath('//div[@class = "marB15 clearFix"]/ul/li/a')
@@ -64,11 +82,5 @@ class StocksController < ApplicationController
   #    @stock.price = @stock_data[5]
   #    @stock.save
   #  end
-  
-  
-  
-  
-  
-  
-  
 end
+
