@@ -2,12 +2,12 @@
 class StocksController < ApplicationController
   def index
     @stock = Stock.all
-    @ac = @stock[0].num.to_s
+    @n = @stock[0].num
     @i = 0
     @page = 0
     while @i < 5 do
       @page += 1
-      @stock_news = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp/search/?q='+@stock[0].num.to_s + '&p='+@page.to_s))
+      @stock_news = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp/search/?q='+@n.to_s + '&p='+@page.to_s))
   
       #URL取得
       @a_tags = @stock_news.xpath('//div[@class = "marB15 clearFix"]/ul/li/a')
@@ -19,11 +19,11 @@ class StocksController < ApplicationController
     
       #title & url　を抽出してそれぞれの配列に格納
       @a_tags.each do |elm|
-          if !elm.attr('href').include?('/cp/')
-            if !elm.attr('href').include?('.vip')
-              if !elm.text.include?("ランキング")
-                @urls.push(elm.attr('href'))
-                @titles.push(elm.text)
+          if !elm.attr('href').include?('/cp/')   #↓
+            if !elm.attr('href').include?('.vip') #含まれてなかったら
+              if !elm.text.include?("ランキング")   #↑
+                @urls.push(elm.attr('href')) #url入れてるところ
+                @titles.push(elm.text) #タイトル入れる
                 @i += 1
                 if @i == 5
                   break
@@ -32,15 +32,32 @@ class StocksController < ApplicationController
             end
           end 
       end
-    end
+    end   
+  
+    
+    
     
     @urls.each do |url|
       @news_contet = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp'+url))
       @content = @news_contet.xpath('//div[@id = "richToolTipArea"]/div')
+      @test = String(@content.text)
       @acc = 'http://news.finance.yahoo.co.jp'+url
+      @sp = url.split("/")[2].split("")
+      @date = @sp[0] + @sp[1] + @sp[2] + @sp[3] + "-" + @sp[4] + @sp[5] + "-" + @sp[6] + @sp[7]
+      
+      @new_news = News.new
+      @new_news.stock_no = @n
+      @new_news.date = @date
+      @new_news.content = @test
+      @new_news.save    
     end
- 
-
+    
+=begin
+    @new_news = News.new
+    @new_news.stock_no = @n
+    @new_news.date = 
+    @new_news.content = @content
+=end
   
   #こっから上のコメントアウト消す
   
