@@ -9,6 +9,7 @@ prices = %w(11560 2062 129 5470 2960 3615 1540 3635 644 3285 3925 327 1692 644 2
     num: nums[idx],
     market: "東証1部",
     name: names[idx],
+    price: prices[idx],
     date: "2015-06-12"
   )
 end
