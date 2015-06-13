@@ -40,6 +40,10 @@ GEM
     erubis (2.7.0)
     execjs (2.5.2)
     hike (1.2.3)
+    hirb (0.7.3)
+    hirb-unicode (0.0.5)
+      hirb (~> 0.5)
+      unicode-display_width (~> 0.1.1)
     i18n (0.7.0)
     journey (1.0.4)
     jquery-rails (3.1.2)
@@ -105,12 +109,15 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicode-display_width (0.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  hirb
+  hirb-unicode
   jquery-rails
   nokogiri
   rails (= 3.2.19)

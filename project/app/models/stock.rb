@@ -1,3 +1,3 @@
 class Stock < ActiveRecord::Base
-  attr_accessible :stock_no, :market, :name, :price
+  attr_accessible :num, :market, :name, :price, :date
 end

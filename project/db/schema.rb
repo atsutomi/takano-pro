@@ -14,18 +14,19 @@
 ActiveRecord::Schema.define(:version => 20150610000925) do
 
   create_table "news", :force => true do |t|
-    t.string   "title"
+    t.integer  "stock_no"
+    t.date     "date"
     t.string   "content"
-    t.string   "url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "stocks", :force => true do |t|
-    t.integer  "stock_no"
+    t.integer  "num"
     t.string   "market"
     t.string   "name"
     t.float    "price"
+    t.date     "date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
