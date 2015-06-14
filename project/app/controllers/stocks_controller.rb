@@ -24,7 +24,7 @@ class StocksController < ApplicationController
               if !elm.text.include?("ランキング")   #↑
                 @urls.push(elm.attr('href')) #url入れてるところ
                 @titles.push(elm.text) #タイトル入れる
-                @i += 1
+                @i = @urls.size
                 if @i == 5
                   break
                 end

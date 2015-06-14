@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20150610000925) do
     t.integer  "num"
     t.string   "market"
     t.string   "name"
-    t.float    "price"
+    t.string   "price"
     t.date     "date"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

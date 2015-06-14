@@ -4,7 +4,7 @@ class CreateStocks < ActiveRecord::Migration
       t.integer :num
       t.string :market
       t.string :name
-      t.float :price
+      t.string :price
       t.date :date
       t.timestamps
     end
