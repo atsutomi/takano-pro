@@ -5,9 +5,9 @@ class StocksController < ApplicationController
     @n = @stock[0].num
     @i = 0
     @page = 0
-    while @i < 5 do
+    while @i < 8 do
       @page += 1
-      @stock_news = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp/search/?q='+@n.to_s + '&p='+@page.to_s))
+      @stock_news = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp/search/?q=6342&p='+@page.to_s))
   
       #URL取得
       @a_tags = @stock_news.xpath('//div[@class = "marB15 clearFix"]/ul/li/a')
@@ -25,7 +25,7 @@ class StocksController < ApplicationController
                 @urls.push(elm.attr('href')) #url入れてるところ
                 @titles.push(elm.text) #タイトル入れる
                 @i = @urls.size
-                if @i == 5
+                if @i == 8
                   break
                 end
               end
@@ -36,7 +36,7 @@ class StocksController < ApplicationController
   
     
     
-    
+=begin    
     @urls.each do |url|
       @news_contet = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp'+url))
       @content = @news_contet.xpath('//div[@id = "richToolTipArea"]/div')
@@ -51,6 +51,9 @@ class StocksController < ApplicationController
       @new_news.content = @test
       @new_news.save    
     end
+=end
+    
+    
     
 =begin
     @new_news = News.new
