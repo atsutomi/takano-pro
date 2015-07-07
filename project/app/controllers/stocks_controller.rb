@@ -1,6 +1,12 @@
 # coding: utf-8
 class StocksController < ApplicationController
   def index
+    
+    
+    @doc = Nokogiri::HTML(open('http://info.finance.yahoo.co.jp/history/?code=4335.T&sy=2015&sm=6&sd=7&ey=2015&em=7&ed=7&tm=d')
+    
+    
+=begin
     @stock = Stock.all
     @n = @stock[0].num
     @i = 0
@@ -34,9 +40,7 @@ class StocksController < ApplicationController
       end
     end   
   
-    
-    
-=begin    
+    #記事一つ一ついアクセスして記事全文を取得＆格納 
     @urls.each do |url|
       @news_contet = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp'+url))
       @content = @news_contet.xpath('//div[@id = "richToolTipArea"]/div')
@@ -53,23 +57,6 @@ class StocksController < ApplicationController
     end
 =end
     
-    
-    
-=begin
-    @new_news = News.new
-    @new_news.stock_no = @n
-    @new_news.date = 
-    @new_news.content = @content
-=end
-  
-  #こっから上のコメントアウト消す
-  
-    #URL取得
-    #@elms = @doc.xpath('//tr[@class = "rankingTabledata yjM"]/td[@class = "txtcenter"]/a')
-    #@urls = Array.new
-    #@elms.each do |elm|
-    #  @urls.push(elm.attr('href'))
-    #end
   end
   
   def show
