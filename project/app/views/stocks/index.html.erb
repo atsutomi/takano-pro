@@ -1,2 +1,7 @@
 
-<p><%= @urls.size %></p>
+<p><%= @oldest.date - 10 %></p>
+<p><%= @newest.date %></p>
+
+
+<p><%= Date.strptime(@table[0].text, "%Y年%m月%d日") %></p>
+<p><%= @table[4] %></p>

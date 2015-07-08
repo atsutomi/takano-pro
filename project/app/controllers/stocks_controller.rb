@@ -1,63 +1,17 @@
 # coding: utf-8
 class StocksController < ApplicationController
   def index
-    
-    
-    @doc = Nokogiri::HTML(open('http://info.finance.yahoo.co.jp/history/?code=4335.T&sy=2015&sm=6&sd=7&ey=2015&em=7&ed=7&tm=d')
-    
-    
-=begin
     @stock = Stock.all
-    @n = @stock[0].num
-    @i = 0
-    @page = 0
-    while @i < 8 do
-      @page += 1
-      @stock_news = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp/search/?q=6342&p='+@page.to_s))
-  
-      #URL取得
-      @a_tags = @stock_news.xpath('//div[@class = "marB15 clearFix"]/ul/li/a')
-     #title取得
-      @news = @stock_news.xpath('//div[@class = "marB15 clearFix"]')
+    @news = News.where(stock_no: @stock[50].num ).order(:date)
     
-      @titles = Array.new
-      @urls = Array.new
+    @oldest = @news[0]
+    @newest = @news[@news.size - 1 ]
     
-      #title & url　を抽出してそれぞれの配列に格納
-      @a_tags.each do |elm|
-          if !elm.attr('href').include?('/cp/')   #↓
-            if !elm.attr('href').include?('.vip') #含まれてなかったら
-              if !elm.text.include?("ランキング")   #↑
-                @urls.push(elm.attr('href')) #url入れてるところ
-                @titles.push(elm.text) #タイトル入れる
-                @i = @urls.size
-                if @i == 8
-                  break
-                end
-              end
-            end
-          end 
-      end
-    end   
-  
-    #記事一つ一ついアクセスして記事全文を取得＆格納 
-    @urls.each do |url|
-      @news_contet = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp'+url))
-      @content = @news_contet.xpath('//div[@id = "richToolTipArea"]/div')
-      @test = String(@content.text)
-      @acc = 'http://news.finance.yahoo.co.jp'+url
-      @sp = url.split("/")[2].split("")
-      @date = @sp[0] + @sp[1] + @sp[2] + @sp[3] + "-" + @sp[4] + @sp[5] + "-" + @sp[6] + @sp[7]
-      
-      @new_news = News.new
-      @new_news.stock_no = @n
-      @new_news.date = @date
-      @new_news.content = @test
-      @new_news.save    
-    end
-=end
-    
+    @doc = Nokogiri::HTML(open('http://info.finance.yahoo.co.jp/history/?code=4335.T&sy=2015&sm=6&sd=7&ey=2015&em=7&ed=7&tm=d'))
+    @table = @doc.xpath('//table[@class = "boardFin yjSt marB6"]/tr/td')
   end
+    
+
   
   def show
     #@stocks_no = Nokogiri::HTML(open('http://info.finance.yahoo.co.jp/ranking/?kd=1&tm=d&mk=1'))
@@ -85,24 +39,6 @@ class StocksController < ApplicationController
    #@news=line.chomp
    # end
   
-=begin
-   #銘柄５０件DB格納
-    @doc = Nokogiri::HTML(open('http://info.finance.yahoo.co.jp/ranking/?kd=1&tm=d&mk=1'))
-  @ranking = @doc.xpath('//tr[@class = "rankingTabledata yjM"]')
-  @ranking.each do |ranking|
-    @datas = ranking.children
-    @stock_data = Array.new
-    @datas.each do |data|
-      @stock_data.push(data.content)
-    end
-      @stock = Stock.new
-      @stock.num = @stock_data[1]
-      @stock.market = @stock_data[2]
-      @stock.name = @stock_data[3]
-      @stock.price = @stock_data[5]
-      @stock.date = Date.today
-      @stock.save
-    end
-=end
-end
 
+
+end
