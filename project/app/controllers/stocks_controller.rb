@@ -1,14 +1,39 @@
 # coding: utf-8
+require 'date'
 class StocksController < ApplicationController
   def index
     @stock = Stock.all
-    @news = News.where(stock_no: @stock[50].num ).order(:date)
-    
-    @oldest = @news[0]
-    @newest = @news[@news.size - 1 ]
-    
-    @doc = Nokogiri::HTML(open('http://info.finance.yahoo.co.jp/history/?code=4335.T&sy=2015&sm=6&sd=7&ey=2015&em=7&ed=7&tm=d'))
-    @table = @doc.xpath('//table[@class = "boardFin yjSt marB6"]/tr/td')
+    @i = 0
+    while @i < @stock.size-1
+      @news = News.where(stock_no: @stock[@i].num ).order(:date)
+      @oldest = Date.parse((@news[0].date-10).to_s)
+      @newest = Date.parse(@news[@news.size-1].date.to_s)
+      @code = @stock[@i].num.to_s
+      @page = 0
+      
+      while @page != null
+        @page += 1
+        @doc = Nokogiri::HTML(open('http://info.finance.yahoo.co.jp/history//?code='+@code+'&sy='+@oldest.year.to_s+'&sm='+@oldest.month.to_s+'&sd='+@oldest.day.to_s+'&ey='+@newest.year.to_s+'&em='+@newest.month.to_s+'&ed='+@newest.day.to_s+'&tm=d&p='+@page.to_s))
+        @table = @doc.xpath('//table[@class = "boardFin yjSt marB6"]/tr/td')
+      
+        if @table.empty? == false
+          @table.each do |table|
+          @datas = table.children
+          @stock_price = Array.new
+          @datas.each do |data|
+            @stock_price.push(data.content)
+          end
+          @prices = Price.new
+          @prices.stock_no = @code
+          @prices.price = @stock_price[4]
+          @prices.date = Date.strptime(@stock_price[0].to_s),'%Y-%m-%d')
+          #@prices.save
+        end
+        else
+          break
+        end
+      end
+    end
   end
     
 
