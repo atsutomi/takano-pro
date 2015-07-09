@@ -7,12 +7,12 @@ class StocksController < ApplicationController
       
       @news = News.where(stock_no: stock.num ).order(:date)
       #.wday == 0(日曜) 6(月曜)
-      if news.size > 0
+      if @news.size > 0
         @oldest = Date.parse((@news[0].date-10).to_s)
         @newest = Date.parse(@news[@news.size-1].date.to_s)
       else
         @oldest = Date.new(2015, 6 ,19)
-        @newest = Date.new(2007, 6 ,29)
+        @newest = Date.new(2015, 6 ,29)
       end
       
       
