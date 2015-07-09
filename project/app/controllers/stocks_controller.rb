@@ -36,24 +36,28 @@ class StocksController < ApplicationController
         @table = @stock_value.xpath('//table[@class = "boardFin yjSt marB6"]/tr')
         for @i in 1..(@table.size-1) do
           @tabledata = @table[@i].xpath('td')
-          @price = Price.new
-          @price.stock_no = stock.num
-          @price.price = @tabledata[4].text.delete(",").to_f
-          @price.date = Date.strptime((@tabledata[0].text), '%Y年%m月%d日')
-          @price.save
-          if Date.strptime((@tabledata[0].text),'%Y年%m月%d日').wday == 5
+          if @tabledata.size == 7
             @price = Price.new
             @price.stock_no = stock.num
             @price.price = @tabledata[4].text.delete(",").to_f
-            @price.date = Date.strptime((@tabledata[0].text), '%Y年%m月%d日') + 1
+            @price.date = Date.strptime((@tabledata[0].text), '%Y年%m月%d日')
             @price.save
+            if Date.strptime((@tabledata[0].text),'%Y年%m月%d日').wday == 5
+              @price = Price.new
+              @price.stock_no = stock.num
+              @price.price = @tabledata[4].text.delete(",").to_f
+              @price.date = Date.strptime((@tabledata[0].text), '%Y年%m月%d日') + 1
+              @price.save
             
-            @price = Price.new
-            @price.stock_no = stock.num
-            @price.price = @tabledata[4].text.delete(",").to_f
-            @price.date = Date.strptime((@tabledata[0].text), '%Y年%m月%d日') + 2
-            @price.save
+              @price = Price.new
+              @price.stock_no = stock.num
+              @price.price = @tabledata[4].text.delete(",").to_f
+              @price.date = Date.strptime((@tabledata[0].text), '%Y年%m月%d日') + 2
+              @price.save
+            end
           end
+          
+          
         end
       end
     end

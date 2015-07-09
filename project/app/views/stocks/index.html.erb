@@ -1,1 +1,8 @@
-<p>owari</p>
+<p><%= @table[1] %></p>
+<p><%= @tabledata[1] %></p>
+<p><%= Date.strptime(@tabledata[0].text, "%Y年%m月%d日") %></p>
+<p><%= @pages.to_i %></p>
+<p><%= @oldest %></p>
+<p><%= @newest %></p>
+<p><%= @pages.to_i/20 %></p>
+<p><%= @pages.to_i%20 %></p>
