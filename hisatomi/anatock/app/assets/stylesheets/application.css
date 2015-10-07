@@ -1,0 +1,12 @@
+/*
+ *= require_self
+ *= require_tree .
+ */
+
+body {
+  background-color: #FDF0AE;
+  color: black;
+  margin: 30px;
+  padding: 30;
+  font-family: Meiryo, sans-serif;
+}
