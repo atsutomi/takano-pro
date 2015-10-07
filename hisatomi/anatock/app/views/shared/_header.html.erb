@@ -1,0 +1,22 @@
+<div>
+<div id="head">
+  <p>ここに装飾</p>
+  <p>ここに装飾</p>
+</div>
+<div id="menu">
+  <ul>
+    <li class="button"><%= link_to(image_tag("selected_top.png", alt: "TOP", mouseover: "onmouse_top.png"),root_path) %></li>
+    <li class="button"><%= link_to(image_tag("button_index.png", alt: "銘柄一覧", mouseover: "onmouse_index.png")) %></li>
+    <li class="button"><%= link_to(image_tag("button_howto.png", alt: "分析方法", mouseover: "onmouse_howto.png")) %></li>
+    <li class="button"><%= link_to(image_tag("button_whats.png", alt: "株とは？", mouseover: "onmouse_whats.png")) %></li>
+  </ul>
+</div>
+<div id="search">
+  <table>
+    <tr>
+      <td><%= text_field_tag style: "width: 120px" %></td>
+      <td><input type="submit" value="検索" /></td>
+    </tr>
+  </table>
+</div>
+</div>
