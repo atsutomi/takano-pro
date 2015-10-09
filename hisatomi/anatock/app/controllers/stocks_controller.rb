@@ -40,6 +40,7 @@ class StocksController < ApplicationController
     @pages = [1,2,3,4,5]
     @page = params[:id]
     @pagei = @page.to_i
+    @page = @pagei
     if 0 < @pagei
     @count = 20 * (@page.to_i - 1)
     @stocks = Stock.order("num")
@@ -70,5 +71,82 @@ class StocksController < ApplicationController
     end
     render "index"
   end
+  
+  ############
+  def pagef
+    @pages = [1,2,3,4,5]
+    @page = params[:id]
+    @pagei = @page.to_i - 1
+    @page = @pagei
+    if 0 < @pagei
+    @count = 20 * (@pagei - 1)
+    @stocks = Stock.order("num")
+    @Pstocks2 = @stocks.offset(@count)
+    @Pstocks = @Pstocks2.limit(20)
+    @market = Stock.select("market").uniq
+    else
+    @pagei = 1
+    @count = 20 * (@pagei - 1) 
+    @stocks = Stock.order("num")
+    @Pstocks2 = @stocks.offset(@count)
+    @Pstocks = @Pstocks2.limit(20)
+    @market = Stock.select("market").uniq
+    end
+    
+    if 3 < @pagei
+      @n = @pagei - 2
+      for @i in 1..5 do
+        @pages[@i-1] = @n
+        @n += 1
+      end
+    else
+      @n = 1
+      for @i in 1..5 do
+        @pages[@i-1] = @n
+        @n += 1
+      end
+    end
+    render "index" 
+  end
+  
+  ############
+  
+  def pagen
+    @pages = [1,2,3,4,5]
+    @page = params[:id]
+    @pagei = @page.to_i + 1
+    @page = @pagei
+    if 0 < @pagei
+    @count = 20 * (@pagei - 1)
+    @stocks = Stock.order("num")
+    @Pstocks2 = @stocks.offset(@count)
+    @Pstocks = @Pstocks2.limit(20)
+    @market = Stock.select("market").uniq
+    else
+    @pagei = 1
+    @count = 20 * (@pagei - 1) 
+    @stocks = Stock.order("num")
+    @Pstocks2 = @stocks.offset(@count)
+    @Pstocks = @Pstocks2.limit(20)
+    @market = Stock.select("market").uniq
+    end
+    
+    if 3 < @pagei
+      @n = @pagei - 2
+      for @i in 1..5 do
+        @pages[@i-1] = @n
+        @n += 1
+      end
+    else
+      @n = 1
+      for @i in 1..5 do
+        @pages[@i-1] = @n
+        @n += 1
+      end
+    end
+    render "index" 
+  end
+  
+  
   
 end
