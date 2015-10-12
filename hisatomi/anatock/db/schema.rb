@@ -11,12 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150903081340) do
+ActiveRecord::Schema.define(:version => 20150903081527) do
 
   create_table "stocks", :force => true do |t|
     t.integer  "num"
     t.string   "market"
     t.string   "name"
+    t.string   "business"
+    t.string   "fb"
+    t.string   "tw"
+    t.string   "hp"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

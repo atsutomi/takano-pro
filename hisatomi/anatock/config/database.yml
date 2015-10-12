@@ -14,8 +14,8 @@ development:
   reconnect: false
   database: anatock_development
   pool: 5
-  username: anatock2
-  password: 0000
+  username: anatock1
+  password: project
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -27,8 +27,8 @@ test:
   reconnect: false
   database: anatock_test
   pool: 5
-  username: anatock2
-  password: 0000
+  username: anatock1
+  password: project
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -37,6 +37,6 @@ production:
   reconnect: false
   database: anatock_production
   pool: 5
-  username: anatock2
-  password: 0000
+  username: anatock1
+  password: project
   socket: /var/run/mysqld/mysqld.sock
