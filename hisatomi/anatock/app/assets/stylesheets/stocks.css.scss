@@ -1,3 +1,41 @@
-// Place all the styles related to the stocks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$container_width: 1800px;
+$sidebar_width: 230px;
+
+div#container2 {
+  margin: 20px auto;
+  padding-top: 5px;
+  width: auto;
+  overflow:hidden;
+  
+  
+/*_graph.html.erb*/
+  div#graph {
+    float: left;
+    background-color: #99DDEE;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  
+/*_data.html.erb*/  
+  div#data {
+    float: right;
+    background-color: #FFFFFF;
+    width: 50%;
+    
+    p{
+        color: #FF0000;
+    }
+    
+    table.stockdata{
+      margin: 0 auto;
+      border-collapse: collapse;
+      border: double;
+      th { text-align: center;}
+      
+    }
+    
+  }
+  
+  
+}
