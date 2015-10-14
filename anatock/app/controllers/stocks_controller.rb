@@ -1,0 +1,28 @@
+#coding: utf-8
+
+class StocksController < ApplicationController
+  def index
+    @stocks = Stock.paginate(:page => params[:page], :per_page => 20)
+  end
+  
+  def search
+    @search_stocks = Stock.search(params[:q])
+    @stocks = @search_stocks.paginate(:page => params[:page], :per_page => 20)
+    render "index"
+  end
+  
+  def show
+    @stock = Stock.find(params[:id])
+    category = ["2015-10-02","2015-10-03","2015-10-04","2015-10-05","2015-10-06","2015-10-07","2015-10-08"]
+    current_quantity = [1000,5000,3000,8000,4000,7000,6000]
+
+    @graph = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(text: '週間推移')
+      f.xAxis(categories: category)
+      f.series(name: "株価" , data: current_quantity)
+    end
+  end
+  
+  
+  
+end
