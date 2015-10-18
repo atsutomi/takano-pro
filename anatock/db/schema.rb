@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150903081340) do
+ActiveRecord::Schema.define(:version => 20151018131224) do
+
+  create_table "prices", :force => true do |t|
+    t.integer  "num"
+    t.date     "date"
+    t.float    "start"
+    t.float    "high"
+    t.float    "low"
+    t.float    "sprice"
+    t.float    "volume"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "stocks", :force => true do |t|
     t.integer  "num"

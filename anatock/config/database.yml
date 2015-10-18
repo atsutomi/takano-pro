@@ -14,7 +14,7 @@ development:
   reconnect: false
   database: anatock_development
   pool: 5
-  username: anatock2
+  username: anatock
   password: 0000
   socket: /var/run/mysqld/mysqld.sock
 
@@ -27,7 +27,7 @@ test:
   reconnect: false
   database: anatock_test
   pool: 5
-  username: anatock2
+  username: anatock
   password: 0000
   socket: /var/run/mysqld/mysqld.sock
 
@@ -37,6 +37,6 @@ production:
   reconnect: false
   database: anatock_production
   pool: 5
-  username: anatock2
+  username: anatock
   password: 0000
   socket: /var/run/mysqld/mysqld.sock
