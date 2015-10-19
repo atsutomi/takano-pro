@@ -1,7 +1,6 @@
+# coding: utf-8
 class RankingController < ApplicationController
   def index
-    def index
-  
     @stocks = Stock.all
     @pcount = 0
     @stocks.each do |stock|
