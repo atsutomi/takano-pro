@@ -13,8 +13,11 @@ class StocksController < ApplicationController
   
   def show
     @stock = Stock.find(params[:id])
-    category = ["2015-10-02","2015-10-03","2015-10-04","2015-10-05","2015-10-06","2015-10-07","2015-10-08"]
-    current_quantity = [1000,5000,3000,8000,4000,7000,6000]
+    @prices = Price.where(num: @stock.num).order("date DESC")
+    category = [@prices[6].date, @prices[5].date, @prices[4].date,
+                @prices[3].date, @prices[2].date, @prices[1].date, @prices[0].date]
+    current_quantity = [@prices[6].sprice, @prices[5].sprice, @prices[4].sprice,
+                        @prices[3].sprice, @prices[2].sprice, @prices[1].sprice, @prices[0].sprice]
 
     @graph = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: '週間推移')
