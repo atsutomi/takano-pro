@@ -2,18 +2,16 @@
 
 <h1><%= @page_title %></h1>
 
-<%= form_tag :search_stocks, method: :get do %>
+<%= form_tag :search1_stocks, method: :get do %>
 <% @market = Stock.select("market").uniq %>
-<%= select_tag 'q', options_from_collection_for_select(@market, :market, :market) %>
-<%= submit_tag "検索" %>
-<% end %>
-<%= form_tag :search_stocks, method: :get do %>
+<%= select_tag 'q', options_from_collection_for_select(@market, :market, :market), :include_blank => true %>
 <% @business = Stock.select("business").uniq %>
-<%= select_tag 'q', options_from_collection_for_select(@business, :business, :business) %>
+<%= select_tag 'r', options_from_collection_for_select(@business, :business, :business), :include_blank => true %>
 <%= submit_tag "検索" %>
 <% end %>
 
-<table class="list">
+<div id="stock_table">
+<table>
   <tr>
     <th>証券番号</th>
     <th>企業名</th>
@@ -28,8 +26,10 @@
       <td><%= stock.market %></td>
       <td><%= stock.business %></td>
     </tr>
-  <% end %>
+  <% end %> 
 </table>
+</div>
+<p></p>
 
 <%= will_paginate @stocks %>
 

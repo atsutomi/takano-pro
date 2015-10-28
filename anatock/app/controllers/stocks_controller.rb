@@ -2,11 +2,21 @@
 
 class StocksController < ApplicationController
   def index
-    @stocks = Stock.paginate(:page => params[:page], :per_page => 20)
+    @stock_order = Stock.order("num")
+    @stocks = @stock_order.paginate(:page => params[:page], :per_page => 20)
   end
   
-  def search
-    @search_stocks = Stock.search(params[:q])
+  def search1
+    @stock_order = Stock.order("num")
+    @search_stocks = @stock_order.search(params[:q])
+    @search_stocks = @search_stocks.search(params[:r])
+    @stocks = @search_stocks.paginate(:page => params[:page], :per_page => 20)
+    render "index"
+  end
+  
+  def search2
+    @stock_order = Stock.order("num")
+    @search_stocks = @stock_order.search(params[:s])
     @stocks = @search_stocks.paginate(:page => params[:page], :per_page => 20)
     render "index"
   end
