@@ -9,5 +9,21 @@ class Stock < ActiveRecord::Base
       end
       rel
     end
+    def msearch(query)
+      rel = order("num")
+      if query.present?
+        rel = rel.where("market LIKE?",
+                "%#{query}%")
+      end
+      rel
+    end
+    def bsearch(query)
+      rel = order("num")
+      if query.present?
+        rel = rel.where("business LIKE?",
+                "%#{query}%")
+      end
+      rel
+    end
   end
 end

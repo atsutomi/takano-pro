@@ -8,8 +8,8 @@ class StocksController < ApplicationController
   
   def search1
     @stock_order = Stock.order("num")
-    @search_stocks = @stock_order.search(params[:q])
-    @search_stocks = @search_stocks.search(params[:r])
+    @search_stocks = @stock_order.msearch(params[:q])
+    @search_stocks = @search_stocks.bsearch(params[:r])
     @stocks = @search_stocks.paginate(:page => params[:page], :per_page => 20)
     render "index"
   end
