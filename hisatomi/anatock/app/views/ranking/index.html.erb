@@ -1,2 +1,30 @@
 <h1>Ranking#index</h1>
+
+<div id="graph" ><%= high_chart("sample", @graph) %></div>
+
+
+<div id="ranking_table">
+<table>
+  <tr>
+    <th>証券番号</th>
+    <th>企業名</th>
+    <th>市場</th>
+    <th>業種</th>
+  </tr>
+  
+  <% @stocks.each do |stock| %>
+    <tr>
+      <td align="right"><%= stock.num %></td>
+      <td><%= link_to stock.name, stock %></td>
+      <td><%= stock.market %></td>
+      <td><%= stock.business %></td>
+    </tr>
+  <% end %> 
+</table>
+</div>
+
+
+<p></p>
+
+
 <p></p>
