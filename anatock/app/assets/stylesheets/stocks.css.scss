@@ -14,9 +14,24 @@ div#container2 {
     background-color: #99DDEE;
     width: 50%;
     margin: 0 auto;
+    div#select{
+      border: solid;
+      width: 200px;
+      height: 30px;
+      div#up{
+        text-align: center;
+        position: relative;
+        top: 7px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        
+      }
+    }
   }
 
-  
+
 /*_data.html.erb*/  
   div#data {
     float: right;
@@ -44,6 +59,7 @@ div#container2 {
 }
 
 
+///PS///
 
 div#stock_table{
   table{border: 2px #808080 solid;
@@ -53,3 +69,5 @@ div#stock_table{
   }
   
 }
+
+///PS///

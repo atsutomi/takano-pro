@@ -1,5 +1,0 @@
-
-<% @market = Stock.select("market").uniq %>
-<%= form.select :stock, Stock.select("market").uniq, :market, :stock_market %>
-<% @business = Stock.select("business").uniq %>
-<%= form.select :stock, Stock.select("business").uniq, :market, :stock_business %>
