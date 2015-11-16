@@ -22,18 +22,33 @@ class StocksController < ApplicationController
   end
   
   def show
+=begin
+    #Python呼び出し
+    IO.popen("python analyze.py 3356").each do |line|
+      @news=line.chomp
+    end
+    @newsa=@news
+=end
+    
     @stock = Stock.find(params[:id])
     @prices = Price.where(num: @stock.num).order("date DESC")
     category = [@prices[6].date, @prices[5].date, @prices[4].date,
-                @prices[3].date, @prices[2].date, @prices[1].date, @prices[0].date]
+                @prices[3].date, @prices[2].date, @prices[1].date, @prices[0].date, @prices[0].date+1]
     current_quantity = [@prices[6].sprice, @prices[5].sprice, @prices[4].sprice,
                         @prices[3].sprice, @prices[2].sprice, @prices[1].sprice, @prices[0].sprice]
-
+    uprange = [@prices[6].sprice, @prices[5].sprice, @prices[4].sprice,
+                        @prices[3].sprice, @prices[2].sprice,@prices[1].sprice,@prices[0].sprice, @prices[1].sprice]
+                        
+    
     @graph = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: '週間推移')
       f.xAxis(categories: category)
+      f.series(name: "aa" , data: uprange)
       f.series(name: "株価" , data: current_quantity)
     end
+    
+    
+  
   end
   
   
