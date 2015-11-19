@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20151106055829) do
+ActiveRecord::Schema.define(:version => 20151116064608) do
+
+  create_table "arimas", :force => true do |t|
+    t.integer  "num"
+    t.float    "ar1"
+    t.float    "ar2"
+    t.float    "ar3"
+    t.float    "ma1"
+    t.float    "ma2"
+    t.float    "ma3"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "news", :force => true do |t|
     t.integer  "num"
