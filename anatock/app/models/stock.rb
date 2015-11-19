@@ -4,8 +4,8 @@ class Stock < ActiveRecord::Base
     def search(query)
       rel = order("num")
       if query.present?
-        rel = rel.where("market LIKE? OR business LIKE ?",
-                "%#{query}%", "%#{query}%")
+        rel = rel.where("name LIKE? OR business LIKE ? OR market LIKE ? OR num LIKE ? ",
+                "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
       end
       rel
     end
