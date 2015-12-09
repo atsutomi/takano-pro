@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20151116064608) do
     t.float    "ma1"
     t.float    "ma2"
     t.float    "ma3"
+    t.string   "arima_ar"
+    t.float    "intercept"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -43,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20151116064608) do
     t.float    "low"
     t.float    "sprice"
     t.float    "volume"
+    t.float    "aprice"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -50,12 +53,8 @@ ActiveRecord::Schema.define(:version => 20151116064608) do
   create_table "results", :id => false, :force => true do |t|
     t.integer  "num"
     t.date     "date"
-    t.float    "logi"
-    t.float    "arima"
-    t.float    "svm"
-    t.float    "rf"
-    t.float    "infw"
-    t.float    "logiarima"
+    t.float    "prob"
+    t.float    "ratio"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

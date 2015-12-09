@@ -1,3 +1,3 @@
 class Price < ActiveRecord::Base
-  # attr_accessible :num , :date , :start , :high , :low ,:sprice , :volume
+  # attr_accessible :num , :date , :start , :high , :low ,:sprice , :volume , :aprice
 end

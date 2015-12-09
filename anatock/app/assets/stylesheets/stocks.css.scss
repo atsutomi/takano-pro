@@ -7,7 +7,6 @@ div#container2 {
   width: auto;
   overflow:hidden;
   
-  
 /*_graph.html.erb*/
   div#graph {
     float: left;
@@ -46,6 +45,7 @@ div#container2 {
       margin: 0 auto;
       border-collapse: collapse;
       border: double;
+      width: inherit;
       td, th {
         text-align: center;
         border: solid 1px;
@@ -55,9 +55,7 @@ div#container2 {
     
   }
   
-  
 }
-
 
 ///PS///
 

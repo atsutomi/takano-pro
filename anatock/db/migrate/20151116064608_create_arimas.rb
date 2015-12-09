@@ -8,6 +8,8 @@ class CreateArimas < ActiveRecord::Migration
       t.float :ma1
       t.float :ma2
       t.float :ma3
+      t.string :arima_ar
+      t.float :intercept
       t.timestamps
     end
   end

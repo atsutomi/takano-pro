@@ -27,12 +27,12 @@ class StocksController < ApplicationController
     IO.popen("python arima.py "+@stock.num.to_s)
     sleep(0.5)
     @prices = Price.where(num: @stock.num).order("date DESC")
-    @value = Result.where(num: @stock.num)
+    #@value = Result.where(num: @stock.num)
     @category = [@prices[6].date, @prices[5].date, @prices[4].date,
                 @prices[3].date, @prices[2].date, @prices[1].date, @prices[0].date, @prices[0].date+1]
     @current_quantity = [@prices[6].sprice, @prices[5].sprice, @prices[4].sprice,
                         @prices[3].sprice, @prices[2].sprice, @prices[1].sprice, @prices[0].sprice]
-    @uprange = [nil,nil,nil,nil,nil,nil,@prices[0].sprice,@value[0].logiarima]
+    @uprange = [nil,nil,nil,nil,nil,nil,@prices[0].sprice,@prices[1].sprice]
                         
     
     @graph = LazyHighCharts::HighChart.new('graph') do |f|
