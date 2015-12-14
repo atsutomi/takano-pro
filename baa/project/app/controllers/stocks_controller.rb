@@ -35,9 +35,6 @@ class StocksController < ApplicationController
         end
       end   
   
-    
-   
-    
       @urls.each do |url|
         @news_contet = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp'+url))
         @content = @news_contet.xpath('//div[@id = "richToolTipArea"]/div')

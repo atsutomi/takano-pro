@@ -3,6 +3,8 @@
 class Tasks::SpriceTask
   def self.execute
     
+    
+    
     @stocks = Stock.all
     @pcount = 0
     @count = 0

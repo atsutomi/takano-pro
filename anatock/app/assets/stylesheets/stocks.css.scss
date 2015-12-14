@@ -36,11 +36,7 @@ div#container2 {
     float: right;
     background-color: #FFFFFF;
     width: 50%;
-    
-    p{
-        color: #FF0000;
-    }
-    
+      
     table.stockdata{
       margin: 0 auto;
       border-collapse: collapse;
@@ -69,3 +65,17 @@ div#stock_table{
 }
 
 ///PS///
+
+
+div.box {
+  width:100%; /* 横幅 */
+  height:100px; /* 縦幅 */
+  overflow:auto;
+  background-color:#F0F0F0; /* 背景色 */
+  border:1px #F0F0F0 dashed; /* 枠 */
+  font-size:80%; /* 文字サイズ */
+  color:#000000; /* 文字色 */
+}
+div.box p {
+  margin:1em 5px; /* 行間 */
+}
