@@ -3,17 +3,6 @@
  *= require_tree .
  */
 
-
-
-body {
-  color: black;
-  margin: 0 10%;
-  font-family: Meiryo, sans-serif;
-  background-color: #ffffff;
-}
-
-/-head-/
-
 #container {
     overflow: hidden;
     position: relative;
@@ -60,20 +49,23 @@ body {
     position: absolute;
     top: 103px;
     right: 140px;
-    
 }
 
-#container #content {
-    padding: 30px;
+#container #content{
+    padding: 40px;
 }
 
-/-footer-/
-#container #footer {}
 #container #footer {
+  clear: both;
+  font: 11px Verdana;
   padding: 0;
-  width: 100%;
-  height: 30px;
   border-top: 2px solid rgb(15, 52, 127);
   text-align: center;
-  font: 14px Verdana; 
+}
+
+body {
+  color: black;
+  margin: 0 10%;
+  font-family: Meiryo, sans-serif;
+  background-color: #ffffff;
 }

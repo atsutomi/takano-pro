@@ -10,7 +10,6 @@ div#container2 {
 /*_graph.html.erb*/
   div#graph {
     float: left;
-    background-color: #99DDEE;
     width: 50%;
     margin: 0 auto;
     div#select{
@@ -35,47 +34,65 @@ div#container2 {
   div#data {
     float: right;
     background-color: #FFFFFF;
-    width: 50%;
-      
-    table.stockdata{
-      margin: 0 auto;
-      border-collapse: collapse;
-      border: double;
-      width: inherit;
-      td, th {
-        text-align: center;
-        border: solid 1px;
-        }
-      
-    }
+    width: 48%;
     
-  }
-  
-}
+  ///PS///
 
-///PS///
-
-div#stock_table{
-  table{border: 2px #808080 solid;
+  table.stock_data{
+    border: 2px #808080 solid;
+    border-collapse: collapse;
     th ,td{
-      border: 2px #808080 solid;
+      border: 0.5px #808080 solid;
+      text-align: center;
     }
+    tr:nth-child(even) {
+      background:#FFF0F5;
+    }
+    tr:nth-child(odd) {
+      background:#E0FFFF;
+    }
+    width: 100%;
+
   }
   
+  ///PS///
+  
+  
+  div.box {
+    width:100%; /* 横幅 */
+    height:100px; /* 縦幅 */
+    overflow:auto;
+    background-color:#F0F0F0; /* 背景色 */
+    border:1px #F0F0F0 dashed; /* 枠 */
+    font-size:80%; /* 文字サイズ */
+    color:#000000; /* 文字色 */
+  }
+  
+  div.box p {
+    margin:1em 5px; /* 行間 */
+  }
+  
+  div#rate {
+    text-align: center;
+    border: 1px double;
+    background-color: #98F5FF;
+  }
+}
 }
 
-///PS///
-
-
-div.box {
-  width:100%; /* 横幅 */
-  height:100px; /* 縦幅 */
-  overflow:auto;
-  background-color:#F0F0F0; /* 背景色 */
-  border:1px #F0F0F0 dashed; /* 枠 */
-  font-size:80%; /* 文字サイズ */
-  color:#000000; /* 文字色 */
-}
-div.box p {
-  margin:1em 5px; /* 行間 */
-}
+div.stock_data{
+        width: 98%;
+        table{
+            border: 2px #808080 solid;
+            border-collapse: collapse;
+            th ,td{
+            border: 0.5px #808080 solid;
+            }
+            tr:nth-child(even) {
+                background:#FFF0F5;
+            }
+            tr:nth-child(odd) {
+                background:#E0FFFF;
+             }
+        }
+    }

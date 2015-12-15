@@ -1,9 +1,11 @@
-<h1>Ranking#index</h1>
-
-<div id="graph" ><%= high_chart("sample", @graph) %></div>
+<h1>伸び率ランキング</h1>
 
 
-<div id="ranking_table">
+<div id="ranking_content">
+<div id="graph2" ><%= high_chart("sample", @graph) %></div>
+
+
+<div class="stock_data">
 <table>
   <tr>
     <th>証券番号</th>
@@ -22,7 +24,7 @@
   <% end %> 
 </table>
 </div>
-
+</div>
 
 <p></p>
 

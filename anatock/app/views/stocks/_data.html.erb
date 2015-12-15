@@ -1,5 +1,11 @@
 
-<table class="stockdata">
+<div id="rate">
+  <h2>上昇確率：<%=@value[0].prob%>％</h2>
+</div>
+
+<br/>
+
+<table class="stock_data">
   <tr>
     <th>証券番号</th>
     <td><%= @stock.num %></td>
@@ -33,8 +39,9 @@
 <br/>
 
 <div class="box">
-  <p>aaaaa</p>
-  <p>bbbbb</p>
-  <p>ccccc</p>
-  <p>ddddd</p>
+  <%@news.each do |news|%>
+    <p><%=news.date%></p>
+    &nbsp;&nbsp;<a href="http://news.finance.yahoo.co.jp<%= news.url%>" target="_black"><%= news.title %></a>
+    
+  <%end%>
 </div>

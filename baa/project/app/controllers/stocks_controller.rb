@@ -1,7 +1,6 @@
 # coding: utf-8
 class StocksController < ApplicationController
   def index
- 
     @stocks = Stock.all
     @stocks.each do |stock|
       @i = 0
@@ -17,14 +16,21 @@ class StocksController < ApplicationController
       
         @titles = Array.new
         @urls = Array.new
-      
+        
+        @newz = News.where(num: stock.num).order("date DESC")
+        
+        
         #title & url　を抽出してそれぞれの配列に格納
         @a_tags.each do |elm|
+          if @newz[0].title == elm.text
+            @i = 3
+            break
+          end
             if !elm.attr('href').include?('/cp/')   #↓
               if !elm.attr('href').include?('.vip') #含まれてなかったら
                 if !elm.text.include?("ランキング")   #↑
-                  @urls.push(elm.attr('href')) #url入れてるところ
                   @titles.push(elm.text) #タイトル入れる
+                  @urls.push(elm.attr('href')) #url入れてるところ
                   @i = @urls.size
                   if @i == 2
                     break
@@ -33,7 +39,12 @@ class StocksController < ApplicationController
               end
             end 
         end
-      end   
+      end
+      
+      if @i==3
+        break
+      end
+      
   
       @urls.each do |url|
         @news_contet = Nokogiri::HTML(open('http://news.finance.yahoo.co.jp'+url))
@@ -44,7 +55,7 @@ class StocksController < ApplicationController
         @date = @sp[0] + @sp[1] + @sp[2] + @sp[3] + "-" + @sp[4] + @sp[5] + "-" + @sp[6] + @sp[7]
       
         @new_news = News.new
-        @new_news.stock_no = stock.num
+        @new_news.num = stock.num
         @new_news.date = @date
         @new_news.content = @test
         @new_news.save

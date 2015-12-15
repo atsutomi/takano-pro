@@ -5,6 +5,7 @@ class CreateResults < ActiveRecord::Migration
       t.date :date
       t.float :prob
       t.float :ratio
+      t.float :expe
 
       t.timestamps
     end

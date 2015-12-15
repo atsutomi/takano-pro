@@ -23,16 +23,21 @@ class StocksController < ApplicationController
   
   def show
     @stock = Stock.find(params[:id])
-    #Python呼び出し
-    IO.popen("python arima.py "+@stock.num.to_s)
-    sleep(0.5)
     @prices = Price.where(num: @stock.num).order("date DESC")
     @value = Result.where(num: @stock.num)
+    
+    @nextday = Date.today
+    if @value[0].date.wday == 5
+        @nextday = @value[0].date+3
+    else
+      @nextday = @value[0].date+1
+    end
+    
     @category = [@prices[6].date, @prices[5].date, @prices[4].date,
-                @prices[3].date, @prices[2].date, @prices[1].date, @prices[0].date, @prices[0].date+1]
+                @prices[3].date, @prices[2].date, @prices[1].date, @prices[0].date, @nextday]
     @current_quantity = [@prices[6].sprice, @prices[5].sprice, @prices[4].sprice,
                         @prices[3].sprice, @prices[2].sprice, @prices[1].sprice, @prices[0].sprice]
-    @uprange = [nil,nil,nil,nil,nil,nil,@prices[0].sprice,@value[0].ratio]
+    @uprange = [nil,nil,nil,nil,nil,nil,@prices[0].sprice,@value[0].expe]
                          
     
     @graph = LazyHighCharts::HighChart.new('graph') do |f|
@@ -43,7 +48,8 @@ class StocksController < ApplicationController
       f.series(name: "株価" , data: @current_quantity)
     end
     
-    #@news = News.where(num: @stock.num).order("date DESC")
+    @news = News.where(num: @stock.num).order("date DESC").limit(10)
+   
     
   
   end

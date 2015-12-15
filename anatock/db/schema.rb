@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20151116064608) do
     t.integer  "num"
     t.date     "date"
     t.string   "title"
-    t.string   "contents"
+    t.text     "contents"
     t.string   "url"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20151116064608) do
     t.date     "date"
     t.float    "prob"
     t.float    "ratio"
+    t.float    "expe"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

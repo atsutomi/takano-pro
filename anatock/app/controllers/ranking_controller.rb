@@ -28,8 +28,9 @@ class RankingController < ApplicationController
     end
   
   end
-  def sort
+
+  def anatock
     
   end
-
+  
 end

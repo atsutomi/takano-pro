@@ -6,7 +6,6 @@ Anatock::Application.routes.draw do
 
   end
   resources :ranking, only: [:index] do
-    collection { get "ranking"}
-    collection { get "getting"}
+    collection { get "anatock"}
   end
 end
